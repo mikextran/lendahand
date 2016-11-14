@@ -1,0 +1,11 @@
+.post-description {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post-links {
+  float: left;
+  margin-right: 25px;
+}

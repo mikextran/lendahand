@@ -5,16 +5,60 @@
   <div class="col-md-12">
     <form name="vm.form.postForm" class="form-horizontal" ng-submit="vm.save(vm.form.postForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.post.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.postForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Post name is required.</p>
-          </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label" for="title">Title</label>
+              <input name="title" type="text" ng-model="vm.post.title" id="title" class="form-control">
+              <div ng-messages="vm.form.postForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Post Title is required.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="description">Description</label>
+              <input name="description" type="text" ng-model="vm.post.description" id="description" class="form-control">
+              <div ng-messages="vm.form.postForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Description is required.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="time">Time</label>
+              <input name="Time" type="date" ng-model="vm.post.time" id="time" class="form-control">
+              <div ng-messages="vm.form.postForm.name.$error" role="alert">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="status">Status</label>
+              <input name="Status" type="checkbox" ng-model="vm.post.status" id="status" class="form-control">
+              <div ng-messages="vm.form.postForm.name.$error" role="alert">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="location">Location</label>
+              <input name="Location" type="text" ng-model="vm.post.location" id="location" class="form-control">
+              <div ng-messages="vm.form.postForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Location is required.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="service">Service</label>
+              <input name="Service" type="text" ng-model="vm.post.service" id="service" class="form-control">
+              <div ng-messages="vm.form.postForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Service is required.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="price">Price</label>
+              <input name="Price" type="text" ng-model="vm.post.price" id="price" class="form-control">
+              <div ng-messages="vm.form.postForm.name.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Price is required.</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-default">{{vm.post._id ? 'Update' : 'Create'}}</button>
+            </div>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.post._id ? 'Update' : 'Create'}}</button>
-        </div>
+
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>
         </div>

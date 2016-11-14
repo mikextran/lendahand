@@ -51,7 +51,7 @@
       })
       .state('posts.view', {
         url: '/:postId',
-        templateUrl: 'modules/posts/client/views/view-post.client.view.html',
+        templateUrl: 'modules/posts/views/view-post.client.view.html',
         controller: 'PostsController',
         controllerAs: 'vm',
         resolve: {
