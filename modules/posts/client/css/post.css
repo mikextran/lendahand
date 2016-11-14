@@ -9,3 +9,12 @@
   float: left;
   margin-right: 25px;
 }
+
+.post-label {
+  margin-top: 5px;
+  margin-bottom: 50px;
+}
+
+.form-control {
+  margin-bottom: 40px;
+}

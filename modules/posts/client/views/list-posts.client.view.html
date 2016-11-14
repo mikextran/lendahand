@@ -7,6 +7,7 @@
     class="list-group-item">
     <div class="list-group-item-text" style="height: 100px;">
       <div class="col-md-2">
+        <img ng-if="post.user" data-ng-src="{{post.user.profileImageURL}}"/>
         <span ng-if="post.user" ng-bind="post.user.profileImageURL"></span>
       </div>
       <div class="col-md-10">

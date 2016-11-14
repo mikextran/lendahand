@@ -24,7 +24,8 @@ var PostSchema = new Schema({
   },
   time: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: 'Please fill in the Description'
   },
   status: {
     type: Boolean
@@ -44,7 +45,7 @@ var PostSchema = new Schema({
   price: {
     type: Number,
     default: '0',
-    //required: 'Please fill in the Price'
+    required: 'Please fill in the Price'
   },
   created: {
     type: Date,

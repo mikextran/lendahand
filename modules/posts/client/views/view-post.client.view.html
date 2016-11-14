@@ -2,7 +2,7 @@
   <div class="page-header">
   </div>
   <div class="list-group">
-    <div class="list-group-item-text" style="height: 100px;">
+    <div class="list-group-item-text">
       <div class="col-md-2">
         <img ng-if="vm.post.user" data-ng-src="{{vm.post.user.profileImageURL}}"></img>
         <span ng-if="vm.post.user" ng-bind="vm.post.user.displayName"></span>
@@ -15,7 +15,7 @@
           requested for
           <span class="list-group-item-heading" ng-bind="vm.post.title"></span>
           </a>
-          <h5 class="post-description" ng-bind="vm.post.description"></h5>
+          <h5 ng-bind="vm.post.description"></h5>
         </div>
         <div class="col-md-3" style="min-height:80px;">
           <div ng-bind="vm.post.created | date:'mediumDate'" align="right"></div>
@@ -44,12 +44,11 @@
           <i class="glyphicon glyphicon-trash"></i>
         </a>
       </div>
-      <div class="col-md-12" style="margin-top: 20px;" align="center">
-        <h4> Comments </h4>
-
-      </div>
       </div>
 
+    </div>
+    <div class="col-md-10 col-md-offset-2" style="margin-top: 20px;" align="center">
+      <h4> Comments </h4>
     </div>
 </div>
 
