@@ -25,10 +25,10 @@ var PostSchema = new Schema({
   time: {
     type: Date,
     default: Date.now,
-    required: 'Please fill in the Description'
+    required: 'Please fill in the Time'
   },
   status: {
-    type: Boolean
+    type: String
   },
   location: {
     type: String,
