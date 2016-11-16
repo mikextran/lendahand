@@ -10,7 +10,10 @@
       <div class="col-md-10">
         <a ui-sref="posts.view({ postId: post._id })">
         <div class="col-md-9" style="min-height:80px;">
-          <h3 class="list-group-item-heading" ng-bind="vm.post.title"></h3>
+          <span ng-if="vm.post.user" ng-bind="vm.post.user.displayName"></span>
+          <span ng-if="!vm.post.user">Deleted User</span>
+          requested for
+          <span class="list-group-item-heading" ng-bind="vm.post.title"></span>
           </a>
           <h5 ng-bind="vm.post.description"></h5>
         </div>
@@ -45,7 +48,6 @@
 
     </div>
     <div class="col-md-10 col-md-offset-2" style="margin-top: 20px;" align="center">
-      <hr>
       <h4> Comments </h4>
     </div>
 </div>

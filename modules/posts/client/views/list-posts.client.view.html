@@ -9,12 +9,14 @@
       <div class="col-md-2">
         <img ng-if="post.user" data-ng-src="{{post.user.profileImageURL}}"/>
         <span ng-if="post.user" ng-bind="post.user.profileImageURL"></span>
-        <span ng-if="post.user" ng-bind="post.user.displayName"></span>
       </div>
       <div class="col-md-10">
         <a ui-sref="posts.view({ postId: post._id })">
         <div class="col-md-9" style="min-height:80px;">
-          <h3 class="list-group-item-heading" ng-bind="post.title"></h3>
+          <span ng-if="post.user" ng-bind="post.user.displayName"></span>
+          <span ng-if="!post.user">Deleted User</span>
+          requested for
+          <span class="list-group-item-heading" ng-bind="post.title"></span>
           </a>
           <h5 class="post-description" ng-bind="post.description"></h5>
         </div>
