@@ -48,8 +48,7 @@
               </div>
 
             </div>
-            <div class="col-md-2">
-              Posted
+            <div class="col-md-2">{{vm.post._id ? 'Posted' : ''}}
               <div ng-bind="vm.post.created | date:'mediumDate'"></div>
             </div>
 

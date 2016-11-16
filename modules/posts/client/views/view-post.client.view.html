@@ -10,9 +10,6 @@
       <div class="col-md-10">
         <a ui-sref="posts.view({ postId: post._id })">
         <div class="col-md-9" style="min-height:80px;">
-          <span ng-if="vm.post.user" ng-bind="vm.post.user.displayName"></span>
-          <span ng-if="!vm.post.user">Deleted User</span>
-          requested for
           <span class="list-group-item-heading" ng-bind="vm.post.title"></span>
           </a>
           <h5 ng-bind="vm.post.description"></h5>
