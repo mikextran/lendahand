@@ -6,7 +6,11 @@
       <fieldset>
         <div class="row">
           <div class="col-md-2">
-            Profile Picture
+            <div ng-if="vm.post.user">
+            <img class="profileimage" data-ng-src="{{vm.post.user.profileImageURL}}"></img>
+            <br>
+            <span ng-bind="vm.post.user.displayName"></span>
+          </div>
           </div>
           <div class="col-md-10">
             <div>
@@ -34,13 +38,13 @@
               <input name="Location" type="text" ng-model="vm.post.location" id="location" class="form-control">
               <div ng-messages="vm.form.postForm.name.$error" role="alert">
               </div>
-              <input name="Price" type="text" ng-model="vm.post.price" id="price" class="form-control">
+              <input name="Price" type="number" ng-model="vm.post.price" id="price" class="form-control">
               <div ng-messages="vm.form.postForm.name.$error" role="alert">
               </div>
               <input name="Service" type="text" ng-model="vm.post.service" id="service" class="form-control">
               <div ng-messages="vm.form.postForm.name.$error" role="alert">
               </div>
-              <input name="Status" type="checkbox" ng-model="vm.post.status" id="status" class="form-control">
+              <input name="Status" type="text" ng-model="vm.post.status" id="status" class="form-control">
               <div ng-messages="vm.form.postForm.name.$error" role="alert">
               </div>
               <div class="form-group" align="right">
