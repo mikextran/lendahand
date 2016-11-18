@@ -18,6 +18,19 @@
           <label for="username">Username</label>
           <input type="text" id="username" name="username" class="form-control" data-ng-model="user.username" placeholder="Username">
         </div>
+        <div class="form-group">
+          <label for="about">About</label>
+          <input type="text" id="about" name="about" class="form-control" data-ng-model="user.about" placeholder="About" height="400px">
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills</label>
+          <input type="text" id="skills" name="skills" class="form-control" data-ng-model="user.skills" placeholder="Skills">
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" class="form-control" data-ng-model="user.location" placeholder="Location">
+        </div>
+
         <div class="text-center form-group">
           <button type="submit" class="btn btn-lg btn-primary">Save Profile</button>
         </div>
@@ -28,6 +41,6 @@
           <strong data-ng-bind="error"></strong>
         </div>
       </fieldset>
-    </form>
+    </form> 
   </div>
 </section>
