@@ -18,3 +18,9 @@
 .form-control {
   margin-bottom: 40px;
 }
+
+.profileimage {
+  width: 80px;
+  height:80px;
+  border-radius: 20%;
+}

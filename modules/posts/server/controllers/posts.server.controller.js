@@ -81,7 +81,7 @@ exports.delete = function(req, res) {
  * List of Posts
  */
 exports.list = function(req, res) {
-  Post.find().sort('-created').populate('user', 'displayName').exec(function(err, posts) {
+  Post.find().sort('-created').populate('user').exec(function(err, posts) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -103,7 +103,7 @@ exports.postByID = function(req, res, next, id) {
     });
   }
 
-  Post.findById(id).populate('user', 'displayName').exec(function (err, post) {
+  Post.findById(id).populate('user').exec(function (err, post) {
     if (err) {
       return next(err);
     } else if (!post) {
