@@ -49,21 +49,6 @@ var UserSchema = new Schema({
     type: String,
     trim: true
   },
-  about:{
-    type: String,
-    trim: true,
-    default:''
-  },
-  location:{
-    type:String,
-    trim: true,
-    deafult:''
-  },
-  skills:{
-    type: String,
-    trim: true,
-    default:''
-  },
   email: {
     type: String,
     trim: true,
