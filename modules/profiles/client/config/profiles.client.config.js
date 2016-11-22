@@ -16,17 +16,18 @@
       roles: ['*']
     });
 
-    // Add the dropdown list item
+    // Add the dropdown edit item
     Menus.addSubMenuItem('topbar', 'profiles', {
-      title: 'View Profile',
-      state: 'profiles.list'
+      title: 'Create Profile',
+      state: 'profiles.create'
     });
 
-    // Add the dropdown create item
+    // Add the dropdown View item
     Menus.addSubMenuItem('topbar', 'profiles', {
-      title: 'Edit Profile',
-      state: 'profiles.create',
+      title: 'List Profiles',
+      state: 'profiles.list',
       roles: ['user']
     });
+
   }
 }());

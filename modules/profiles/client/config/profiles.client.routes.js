@@ -15,7 +15,7 @@
         template: '<ui-view/>'
       })
       .state('profiles.list', {
-        url: '/profile/list',
+        url: '',
         templateUrl: 'modules/profiles/views/list-profiles.client.view.html',
         controller: 'ProfilesListController',
         controllerAs: 'vm',
@@ -24,7 +24,7 @@
         }
       })
       .state('profiles.create', {
-        url: '/profile/create',
+        url: '/create',
         templateUrl: 'modules/profiles/views/form-profile.client.view.html',
         controller: 'ProfilesController',
         controllerAs: 'vm',
