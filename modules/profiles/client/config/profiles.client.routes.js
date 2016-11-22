@@ -16,7 +16,7 @@
       })
       .state('profiles.list', {
         url: '',
-        templateUrl: 'modules/profiles/client/views/list-profiles.client.view.html',
+        templateUrl: 'modules/profiles/views/list-profiles.client.view.html',
         controller: 'ProfilesListController',
         controllerAs: 'vm',
         data: {
@@ -25,7 +25,7 @@
       })
       .state('profiles.create', {
         url: '/create',
-        templateUrl: 'modules/profiles/client/views/form-profile.client.view.html',
+        templateUrl: 'modules/profiles/views/form-profile.client.view.html',
         controller: 'ProfilesController',
         controllerAs: 'vm',
         resolve: {
@@ -38,7 +38,7 @@
       })
       .state('profiles.edit', {
         url: '/:profileId/edit',
-        templateUrl: 'modules/profiles/client/views/form-profile.client.view.html',
+        templateUrl: 'modules/profiles/views/form-profile.client.view.html',
         controller: 'ProfilesController',
         controllerAs: 'vm',
         resolve: {
@@ -51,7 +51,7 @@
       })
       .state('profiles.view', {
         url: '/:profileId',
-        templateUrl: 'modules/profiles/client/views/view-profile.client.view.html',
+        templateUrl: 'modules/profiles/views/view-profile.client.view.html',
         controller: 'ProfilesController',
         controllerAs: 'vm',
         resolve: {

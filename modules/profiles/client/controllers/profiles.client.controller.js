@@ -10,7 +10,7 @@
 
   function ProfilesController ($scope, $state, $window, Authentication, profile) {
     var vm = this;
-
+    
     vm.authentication = Authentication;
     vm.profile = profile;
     vm.error = null;
