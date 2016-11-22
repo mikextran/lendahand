@@ -27,45 +27,6 @@ exports.create = function(req, res) {
   });
 };
 
-// Not sure if this should be here
-/**
- * Update profile details
- */
-exports.update = function (req, res) {
-  // Init Variables
-  var profile = req.profile;
-
-  // For security measurement we remove the roles from the req.body object
-  delete req.body.roles;
-
-  if (profile) {
-    // Merge existing user
-    profile = _.extend(profile, req.body);
-    profile.updated = Date.now();
-    profile.displayName = profile.firstName + ' ' + profile.lastName;
-
-    profile.save(function (err) {
-      if (err) {
-        return res.status(400).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      } else {
-        req.login(profile, function (err) {
-          if (err) {
-            res.status(400).send(err);
-          } else {
-            res.json(profile);
-          }
-        });
-      }
-    });
-  } else {
-    res.status(400).send({
-      message: 'User is not signed in'
-    });
-  }
-};
-
 /**
  * Show the current Profile
  */

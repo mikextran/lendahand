@@ -10,23 +10,19 @@ var mongoose = require('mongoose'),
  * Profile Schema
  */
 var ProfileSchema = new Schema({
-  skills: {
+  name: {
     type: String,
     default: '',
-    required: 'List your skills',
+    required: 'Please fill Profile name',
     trim: true
   },
-  about: {
-    type: String,
-    default: '',
-    required: 'List something about yourself',
-    trim: true
+  created: {
+    type: Date,
+    default: Date.now
   },
-  location: {
-    type: String,
-    default: '',
-    required: 'List your location',
-    trim: true
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
   }
 });
 

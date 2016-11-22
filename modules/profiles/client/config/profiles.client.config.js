@@ -5,11 +5,11 @@
     .module('profiles')
     .run(menuConfig);
 
-  menuConfig.$inject = ['Menus'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(Menus) {
+  function menuConfig(menuService) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
+    menuService.addMenuItem('topbar', {
       title: 'Profiles',
       state: 'profiles',
       type: 'dropdown',
@@ -17,14 +17,14 @@
     });
 
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'profiles', {
-      title: 'View Profile',
+    menuService.addSubMenuItem('topbar', 'profiles', {
+      title: 'List Profiles',
       state: 'profiles.list'
     });
 
     // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'profiles', {
-      title: 'Edit Profile',
+    menuService.addSubMenuItem('topbar', 'profiles', {
+      title: 'Create Profile',
       state: 'profiles.create',
       roles: ['user']
     });

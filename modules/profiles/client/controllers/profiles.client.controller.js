@@ -17,23 +17,6 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-    vm.updateUserProfile;
-
-    $scope.updateUserProfile = function (isValid) {
-      if (isValid) {
-        $scope.success = $scope.error = null;
-        vm = new Profiles($scope.profile);
-
-        profile.$update(function (response) {
-          $scope.success = true;
-          Authentication.profile = response;
-        }, function (response) {
-          $scope.error = response.data.message;
-        });
-      } else {
-        $scope.submitted = true;
-      }
-    };
 
     // Remove existing Profile
     function remove() {
