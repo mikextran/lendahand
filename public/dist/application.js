@@ -91,6 +91,12 @@ ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
   app.registerModule('posts');
 }(ApplicationConfiguration));
 
+(function (app) {
+  'use strict';
+
+  app.registerModule('profiles');
+}(ApplicationConfiguration));
+
 'use strict';
 
 // Use Applicaion configuration module to register a new module
@@ -599,6 +605,227 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
   function PostsService($resource) {
     return $resource('api/posts/:postId', {
       postId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+}());
+
+(function () {
+  'use strict';
+
+  angular
+    .module('profiles')
+    .run(menuConfig);
+
+  menuConfig.$inject = ['Menus'];
+
+  function menuConfig(Menus) {
+    // Set top bar menu items
+    Menus.addMenuItem('topbar', {
+      title: 'Profiles',
+      state: 'profiles',
+      type: 'dropdown',
+      roles: ['*']
+    });
+
+    // Add the dropdown list item
+    Menus.addSubMenuItem('topbar', 'profiles', {
+      title: 'View Profile',
+      state: 'profiles.list'
+    });
+
+    // Add the dropdown create item
+    Menus.addSubMenuItem('topbar', 'profiles', {
+      title: 'Edit Profile',
+      state: 'profiles.create',
+      roles: ['user']
+    });
+  }
+}());
+
+(function () {
+  'use strict';
+
+  angular
+    .module('profiles')
+    .config(routeConfig);
+
+  routeConfig.$inject = ['$stateProvider'];
+
+  function routeConfig($stateProvider) {
+    $stateProvider
+      .state('profiles', {
+        abstract: true,
+        url: '/profiles',
+        template: '<ui-view/>'
+      })
+      .state('profiles.list', {
+        url: '/profile/list',
+        templateUrl: 'modules/profiles/views/list-profiles.client.view.html',
+        controller: 'ProfilesListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Profiles List'
+        }
+      })
+      .state('profiles.create', {
+        url: '/profile/create',
+        templateUrl: 'modules/profiles/views/form-profile.client.view.html',
+        controller: 'ProfilesController',
+        controllerAs: 'vm',
+        resolve: {
+          profileResolve: newProfile
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Profiles Create'
+        }
+      })
+      .state('profiles.edit', {
+        url: '/:profileId/edit',
+        templateUrl: 'modules/profiles/views/form-profile.client.view.html',
+        controller: 'ProfilesController',
+        controllerAs: 'vm',
+        resolve: {
+          profileResolve: getProfile
+        },
+        data: {
+          roles: ['user', 'admin'],
+          pageTitle: 'Edit Profile {{ profileResolve.name }}'
+        }
+      })
+      .state('profiles.view', {
+        url: '/:profileId',
+        templateUrl: 'modules/profiles/views/view-profile.client.view.html',
+        controller: 'ProfilesController',
+        controllerAs: 'vm',
+        resolve: {
+          profileResolve: getProfile
+        },
+        data: {
+          pageTitle: 'Profile {{ profileResolve.name }}'
+        }
+      });
+  }
+
+  getProfile.$inject = ['$stateParams', 'ProfilesService'];
+
+  function getProfile($stateParams, ProfilesService) {
+    return ProfilesService.get({
+      profileId: $stateParams.profileId
+    }).$promise;
+  }
+
+  newProfile.$inject = ['ProfilesService'];
+
+  function newProfile(ProfilesService) {
+    return new ProfilesService();
+  }
+}());
+
+(function () {
+  'use strict';
+
+  angular
+    .module('profiles')
+    .controller('ProfilesListController', ProfilesListController);
+
+  ProfilesListController.$inject = ['ProfilesService'];
+
+  function ProfilesListController(ProfilesService) {
+    var vm = this;
+
+    vm.profiles = ProfilesService.query();
+  }
+}());
+
+(function () {
+  'use strict';
+
+  // Profiles controller
+  angular
+    .module('profiles')
+    .controller('ProfilesController', ProfilesController);
+
+  ProfilesController.$inject = ['$scope', '$state', '$window', 'Authentication', 'profileResolve'];
+
+  function ProfilesController ($scope, $state, $window, Authentication, profile) {
+    var vm = this;
+
+    vm.authentication = Authentication;
+    vm.profile = profile;
+    vm.error = null;
+    vm.form = {};
+    vm.remove = remove;
+    vm.save = save;
+    vm.updateUserProfile;
+
+    $scope.updateUserProfile = function (isValid) {
+      if (isValid) {
+        $scope.success = $scope.error = null;
+        vm = new Profiles($scope.profile);
+
+        profile.$update(function (response) {
+          $scope.success = true;
+          Authentication.profile = response;
+        }, function (response) {
+          $scope.error = response.data.message;
+        });
+      } else {
+        $scope.submitted = true;
+      }
+    };
+
+    // Remove existing Profile
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete?')) {
+        vm.profile.$remove($state.go('profiles.list'));
+      }
+    }
+
+    // Save Profile
+    function save(isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.profileForm');
+        return false;
+      }
+
+      // TODO: move create/update logic to service
+      if (vm.profile._id) {
+        vm.profile.$update(successCallback, errorCallback);
+      } else {
+        vm.profile.$save(successCallback, errorCallback);
+      }
+
+      function successCallback(res) {
+        $state.go('profiles.view', {
+          profileId: res._id
+        });
+      }
+
+      function errorCallback(res) {
+        vm.error = res.data.message;
+      }
+    }
+  }
+}());
+
+// Profiles service used to communicate Profiles REST endpoints
+(function () {
+  'use strict';
+
+  angular
+    .module('profiles')
+    .factory('ProfilesService', ProfilesService);
+
+  ProfilesService.$inject = ['$resource'];
+
+  function ProfilesService($resource) {
+    return $resource('api/profiles/:profileId', {
+      profileId: '@_id'
     }, {
       update: {
         method: 'PUT'
