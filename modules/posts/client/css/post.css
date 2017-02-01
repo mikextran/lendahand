@@ -5,6 +5,20 @@
   text-overflow: ellipsis;
 }
 
+.post-location {
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post-price {
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .post-links {
   float: left;
   margin-right: 25px;
