@@ -25,7 +25,7 @@ var PostSchema = new Schema({
   time: {
     type: Date,
     default: Date.now,
-    required: 'Please fill in the Description'
+    required: 'Please fill in the Time'
   },
   status: {
     type: Boolean
@@ -54,7 +54,9 @@ var PostSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  },
+
+  
 });
 
 mongoose.model('Post', PostSchema);
